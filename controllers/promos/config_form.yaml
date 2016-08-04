@@ -1,0 +1,10 @@
+name: Promos
+form: $/octommerce/promo/models/promo/fields.yaml
+modelClass: Octommerce\Promo\Models\Promo
+defaultRedirect: octommerce/promo/promos
+create:
+    redirect: 'octommerce/promo/promos/update/:id'
+    redirectClose: octommerce/promo/promos
+update:
+    redirect: octommerce/promo/promos
+    redirectClose: octommerce/promo/promos

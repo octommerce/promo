@@ -1,0 +1,25 @@
+plugin:
+    name: 'Octommerce.Promo::lang.plugin.name'
+    description: 'Octommerce.Promo::lang.plugin.description'
+    author: Octommerce
+    icon: oc-icon-certificate
+    homepage: ''
+navigation:
+    promo:
+        label: Promotion
+        url: octommerce/promo/promos
+        icon: icon-bolt
+        order: '400'
+        sideMenu:
+            promos:
+                label: Promotions
+                url: octommerce/promo/promos
+                icon: icon-asterisk
+            coupons:
+                label: Coupons
+                url: octommerce/promo/coupons
+                icon: icon-ticket
+            simulator:
+                label: Simulator
+                url: octommerce/promo/simulator
+                icon: icon-toggle-right

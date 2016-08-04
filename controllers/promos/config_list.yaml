@@ -1,0 +1,11 @@
+list: $/octommerce/promo/models/promo/columns.yaml
+modelClass: Octommerce\Promo\Models\Promo
+title: Promos
+noRecordsMessage: 'backend::lang.list.no_records'
+showSetup: true
+showCheckboxes: true
+toolbar:
+    buttons: list_toolbar
+    search:
+        prompt: 'backend::lang.list.search_prompt'
+recordUrl: 'octommerce/promo/promos/update/:id'

@@ -1,0 +1,11 @@
+list: $/octommerce/promo/models/coupon/columns.yaml
+modelClass: Octommerce\Promo\Models\Coupon
+title: Coupons
+noRecordsMessage: 'backend::lang.list.no_records'
+showSetup: true
+showCheckboxes: true
+toolbar:
+    buttons: list_toolbar
+    search:
+        prompt: 'backend::lang.list.search_prompt'
+recordUrl: 'octommerce/promo/coupons/update/:id'

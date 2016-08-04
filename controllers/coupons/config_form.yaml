@@ -1,0 +1,10 @@
+name: Coupons
+form: $/octommerce/promo/models/coupon/fields.yaml
+modelClass: Octommerce\Promo\Models\Coupon
+defaultRedirect: octommerce/promo/coupons
+create:
+    redirect: 'octommerce/promo/coupons/update/:id'
+    redirectClose: octommerce/promo/coupons
+update:
+    redirect: octommerce/promo/coupons
+    redirectClose: octommerce/promo/coupons

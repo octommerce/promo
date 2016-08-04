@@ -1,0 +1,6 @@
+1.0.1:
+    - 'Initialize plugin.'
+    - builder_table_create_octommerce_promo_promos.php
+    - builder_table_create_octommerce_promo_coupons.php
+    - builder_table_create_octommerce_promo_rules.php
+    - builder_table_create_octommerce_promo_coupon_redemptions.php
