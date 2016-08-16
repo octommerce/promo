@@ -55,7 +55,7 @@ class PromoManager
 
     		foreach($properties as $key => $ruleProperty) {
 
-	    		$ruleProperty['span'] = 'auto';
+	    		$ruleProperty['span'] = isset($ruleProperty['span']) ? $ruleProperty['span'] :'auto';
 	    		$ruleProperty['trigger'] = [
 		            'action' => 'show',
 		            'field' => 'type',
