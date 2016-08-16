@@ -24,12 +24,21 @@ class Products extends RuleBase
     public function registerProperties()
     {
     	return [
-    		'products' => [
-    			'label'    => 'Products',
-    			'type'     => 'checkboxList',
-                'options'  => $this->getProductsOptions(),
-    			'required' => true,
+    		'product' => [
+                'label'           => 'Product',
+                'type'            => 'dropdown',
+                'options'         => $this->getProductsOptions(),
+                'required'        => true,
+                'span'            => 'full',
     		],
+            'min_products' => [
+                'label'    => 'Min. Products',
+                'type'     => 'number',
+            ],
+            'max_products' => [
+                'label'    => 'Max. Products',
+                'type'     => 'number',
+            ],
     	];
     }
 
@@ -40,12 +49,13 @@ class Products extends RuleBase
      */
     public function onValidate($options, $target)
     {
-        return in_array($options['product_id'], $this->props['products']);
+        return in_array($options['product_ids'], $this->props['products']);
     }
 
     protected function getProductsOptions()
     {
-        return Product::lists('name', 'id');
+        // return Product::lists('name', 'id');
+        return Product::select('name', 'id')->get()->pluck('name', 'id');
     }
 
 }
