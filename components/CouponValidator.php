@@ -1,5 +1,6 @@
 <?php namespace Octommerce\Promo\Components;
 
+use Cart;
 use Cms\Classes\ComponentBase;
 use Octommerce\Promo\Classes\Validator;
 
@@ -36,18 +37,23 @@ class CouponValidator extends ComponentBase
             throw new \ApplicationException('Please fill the code');
         }
 
+        $this->page['cart'] = $cart = Cart::get();
+
         // Get input options
         $options = post('options');
 
         // Get target
         $target = post('target');
 
+        $target['subtotal'] = $cart->total_price;
         // Get count
         // $count = post('count') ?: 1;
         $count = 1; // Jika minta lebih, dikasih stock nya aja berapa
 
         // Validate
         if($validator->validate($code, $options, $target, $count)) {
+
+            $this->page['discount'] = isset($validator->output['target']['subtotal']) ? $validator->output['target']['subtotal'] : 0;
 
             // return success message
             return $validator->output;
