@@ -8,6 +8,8 @@ navigation:
     promo:
         label: Promotion
         url: octommerce/promo/promos
+        permissions:
+            - octommerce.promo.*
         icon: icon-bolt
         order: '400'
         sideMenu:
