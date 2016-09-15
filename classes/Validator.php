@@ -51,12 +51,12 @@ class Validator
                 return false;
             }
 
-            if (Carbon::now() < $coupon->promo->start_at) {
+            if ($coupon->promo->start_at && Carbon::now() < $coupon->promo->start_at) {
                 $this->error_message = 'Promotion is not yet started.';
                 return false;
             }
 
-            if (Carbon::now() > $coupon->promo->end_at) {
+            if ($coupon->promo->end_at && Carbon::now() > $coupon->promo->end_at) {
                 $this->error_message = 'Promotion is finished.';
                 return false;
             }
@@ -106,7 +106,7 @@ class Validator
                 	$amount = max($amount, $this->fixOrPercentage($promoOutput['output_min_amount'], $promoOutput['output_min_type'], $targetAmount));
                 }
 
-                $output['target'][$promoOutput['target']] = (int) $amount;
+                $output['target'][$promoOutput['target']] = (int) min($amount, $targetAmount);
             }
 
             $this->output = $output;
