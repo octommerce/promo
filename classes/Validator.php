@@ -169,7 +169,7 @@ class Validator
             if ($result === false) {
                 if(! $errorMessage) {
 
-                    $errorMessage = $ruleObject->error_message;
+                    $errorMessage = $rule->error_message ?: $ruleObject->error_message;
                 }
             } elseif($value && $rule->output_type) {
             	$outputType = $rule->output_type;
