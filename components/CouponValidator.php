@@ -39,8 +39,13 @@ class CouponValidator extends ComponentBase
 
         $this->page['cart'] = $cart = Cart::get();
 
-        // Get input options
-        $options = post('options');
+        // Built-in options
+        $options = [
+            'products' => $cart->products,
+        ];
+
+        // Get options from input
+        $options = array_merge($options, is_array(post('options')) ? post('options') : []);
 
         // Get target
         $target = post('target');
