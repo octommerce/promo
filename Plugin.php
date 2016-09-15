@@ -74,8 +74,9 @@ class Plugin extends PluginBase
 
                 if (isset($validator->output['target']['subtotal'])) {
                     $order->discount = $validator->output['target']['subtotal'];
-                    $order->save();
                 }
+
+                $order->save();
 
             }
         });
