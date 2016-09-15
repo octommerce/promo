@@ -1,4 +1,4 @@
-<?php namespace Octommerce\Promo\Classes\Rules;
+<?php namespace Octommerce\Promo\Rules;
 
 use Octommerce\Promo\Classes\RuleBase;
 

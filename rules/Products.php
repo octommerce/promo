@@ -1,4 +1,4 @@
-<?php namespace Octommerce\Promo\Classes\Rules;
+<?php namespace Octommerce\Promo\Rules;
 
 use Carbon\Carbon;
 use Octommerce\Promo\Classes\RuleBase;
@@ -9,7 +9,6 @@ class Products extends RuleBase
     public $error_message = 'Product is not suitable.';
 
     public $options = [
-        'product_id' => 'required',
     ];
 
 	public function ruleDetails()

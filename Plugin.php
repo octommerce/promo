@@ -26,8 +26,9 @@ class Plugin extends PluginBase
     	//
 
     	$promoManager->registerRules([
-            'Octommerce\Promo\Classes\Rules\Products',
-            'Octommerce\Promo\Classes\Rules\Subtotal',
+            'Octommerce\Promo\Rules\Products',
+            'Octommerce\Promo\Rules\Brands',
+            'Octommerce\Promo\Rules\Subtotal',
         ]);
 
         \Octommerce\Promo\Controllers\Promos::extendFormFields(function($form, $model, $context) use($promoManager) {
