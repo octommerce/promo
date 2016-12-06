@@ -4,3 +4,6 @@
     - builder_table_create_octommerce_promo_coupons.php
     - builder_table_create_octommerce_promo_rules.php
     - builder_table_create_octommerce_promo_coupon_redemptions.php
+1.0.2:
+    - Add coupon fields on orders table
+    - add_coupon_fields_on_orders_table.php

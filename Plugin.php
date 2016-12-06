@@ -69,8 +69,8 @@ class Plugin extends PluginBase
                 // Hold the coupon based on determined amount
                 $redemption = $coupon->hold($order->user_id, $count);
 
-                // $this->order->coupon_code = $coupon->code;
-                // $this->order->coupon_redemption_id = $redemption->id;
+                $order->coupon_code = $coupon->code;
+                $order->coupon_redemption_id = $redemption->id;
 
                 if (isset($validator->output['target']['subtotal'])) {
                     $order->discount = $validator->output['target']['subtotal'];
