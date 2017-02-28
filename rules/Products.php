@@ -23,9 +23,9 @@ class Products extends RuleBase
     public function registerProperties()
     {
     	return [
-    		'product' => [
-                'label'           => 'Product',
-                'type'            => 'dropdown',
+    		'products' => [
+                'label'           => 'Products',
+                'type'            => 'checkboxlist',
                 'options'         => $this->getProductsOptions(),
                 'required'        => true,
                 'span'            => 'full',
@@ -53,13 +53,17 @@ class Products extends RuleBase
 
         $products = $options['products'];
 
-        return in_array($products->lists('id'), $this->props['products']);
+        foreach ($products as $product) {
+            if (in_array($product->id, $this->props['products']))
+                return true;
+        }
+
+        return false;
     }
 
     protected function getProductsOptions()
     {
-        // return Product::lists('name', 'id');
-        return Product::select('name', 'id')->get()->pluck('name', 'id');
+        return Product::select('name', 'id')->orderBy('name', 'asc')->get()->pluck('name', 'id');
     }
 
 }
