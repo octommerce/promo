@@ -48,7 +48,12 @@ class Products extends RuleBase
      */
     public function onValidate($options, $target)
     {
-        return in_array($options['product_ids'], $this->props['products']);
+        if (!isset($options['products']))
+            return false;
+
+        $products = $options['products'];
+
+        return in_array($products->lists('id'), $this->props['products']);
     }
 
     protected function getProductsOptions()
