@@ -1,6 +1,7 @@
 <?php namespace Octommerce\Promo\Components;
 
 use Cart;
+use Flash;
 use Cms\Classes\ComponentBase;
 use Octommerce\Promo\Classes\Validator;
 
@@ -37,7 +38,7 @@ class CouponValidator extends ComponentBase
             throw new \ApplicationException('Please fill the code');
         }
 
-        $this->page['cart'] = $cart = Cart::get();
+        $cart = Cart::get();
 
         // Built-in options
         $options = [
@@ -58,16 +59,27 @@ class CouponValidator extends ComponentBase
         // Validate
         if($validator->validate($code, $options, $target, $count)) {
 
-            $this->page['discount'] = isset($validator->output['target']['subtotal']) ? $validator->output['target']['subtotal'] : 0;
+            $cart->discount = isset($validator->output['target']['subtotal']) ? $validator->output['target']['subtotal'] : 0;
+
+            $this->page['cart'] = $cart;
+
+            // $this->page['discount'] = isset($validator->output['target']['subtotal']) ? $validator->output['target']['subtotal'] : 0;
+
+            // $this->page['discount'] = 20000;
 
             // return success message
-            return $validator->output;
+            Flash::success($validator->output['message']);
         } else {
+            $cart->discount = 0;
             // return error message
-            throw new \ApplicationException($validator->error_message);
+            Flash::error($validator->error_message);
             // \Flash::error($validator->error_message);
             // return false;
         }
+
+        $cart->save();
+
+        $this->page['cart'] = $cart;
     }
 
 }
