@@ -80,5 +80,52 @@ class Plugin extends PluginBase
 
             }
         });
+
+        // Extend Order backend list
+        Event::listen('backend.list.extendColumns', function($widget) {
+
+            // Only for the Order controller
+            if (!$widget->getController() instanceof \Octommerce\Octommerce\Controllers\Orders) {
+                return;
+            }
+
+            // Only for the Order model
+            if (!$widget->model instanceof \Octommerce\Octommerce\Models\Order) {
+                return;
+            }
+
+            $widget->addColumns(
+                [
+                    'coupon_code' => [
+                        'label'      => 'Promo Code',
+                        'type'       => 'text',
+                        'sortable'   => false,
+                        'invisible'  => true,
+                        'searchable' => true
+                    ]
+                ]
+            );
+        });
+
+
+        // Extend Order backend filter
+        Event::listen('backend.filter.extendScopes', function($widget) {
+
+            // Only for the Order controller
+            if (!$widget->getController() instanceof \Octommerce\Octommerce\Controllers\Orders) {
+                return;
+            }
+
+            $widget->addScopes(
+                [
+                    'coupon_code' => [
+                        'label'      => 'Is Promotion',
+                        'type'       => 'checkbox',
+                        'conditions' => 'coupon_code <> "" or coupon_code IS NOT NULL',
+                    ]
+                ]
+            );
+        });
+
     }
 }
