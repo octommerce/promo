@@ -38,7 +38,7 @@ class Validator
         }
 
         // If no stock anymore
-        if ($coupon->stock < $count) {
+        if (!is_null($coupon->stock) && $coupon->stock < $count) {
             $this->error_message = $coupon->stock > 0 ? sprintf('Only %s coupon(s) available.', $coupon->stock) : 'No more coupon.';
             return false;
         }

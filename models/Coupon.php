@@ -16,7 +16,7 @@ class Coupon extends Model
      */
     public $rules = [
         'code' => 'required',
-        'stock' => 'required',
+        // 'stock' => 'required',
     ];
 
     /**

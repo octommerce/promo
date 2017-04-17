@@ -65,11 +65,10 @@ tabs:
                         commentAbove: Select your discounted target for output
                         options:
                             '': '- Select Target -'
-                            pax: Pax (limited stock)
-                            pax-all: Pax (all)
-                            price_adult: Price Adult
-                            price_child: Price Child
                             subtotal: Subtotal
+                            tax: Tax
+                            shipping_fee: Shipping Fee
+                            misc_fee: Misc Fee
                             total: Total
                     output_amount:
                         label: Amount

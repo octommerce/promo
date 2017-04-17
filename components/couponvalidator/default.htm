@@ -1,11 +1,9 @@
-<form
-	data-request="{{ __SELF__ }}::onCheck">
-	<div class="form-group">
-        <div class="input-group">
-            <input type="text" name="code" placeholder="Kode promo" class="form-control">
-            <span class="input-group-btn">
-                <button class="btn btn-default" type="submit">Check</button>
-            </span>
-        </div>
+<div class="form-group">
+	<input type="text" name="code" placeholder="Kode promo" class="form-control" data-request="{{ __SELF__ ~ '::onCheck' }}" data-track-input data-request-flash data-request-update="'checkout::summary': '.checkout-summary'">
+    <div class="input-group">
+        <!-- <input type="text" name="code" placeholder="Kode promo" class="form-control" data-request="{{ __SELF__ ~ '::onCheck' }}"> -->
+        <!-- <span class="input-group-btn">
+            <button class="btn btn-default" type="submit">Check</button>
+        </span> -->
     </div>
-</form>
+</div>

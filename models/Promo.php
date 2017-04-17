@@ -33,8 +33,14 @@ class Promo extends Model
     public $table = 'octommerce_promo_promos';
 
     public $hasMany = [
-        'coupons' => 'Octommerce\Promo\Models\Coupon',
-        'promo_rules' => 'Octommerce\Promo\Models\Rule', // Prevent conflict with `rules` for validation
+        'coupons' => [
+            'Octommerce\Promo\Models\Coupon',
+            'delete' => true,
+        ],
+        'promo_rules' => [
+            'Octommerce\Promo\Models\Rule',
+            'delete' => true,
+        ],
     ];
 
     public $attachOne = [

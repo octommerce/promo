@@ -8,6 +8,8 @@ use Octommerce\Promo\Classes\Validator;
 
 class Plugin extends PluginBase
 {
+    public $require = ['Octommerce.Octommerce'];
+
     public function registerComponents()
     {
     	return [
