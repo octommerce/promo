@@ -32,13 +32,20 @@ class CouponValidator extends ComponentBase
     {
         $validator = Validator::instance();
 
+        $this->page['cart'] = $cart = Cart::get();
+
         // Get input code
         $code = trim(post($this->property('input_name')));
-        if( ! $code) {
+        if (! $code) {
+
+            if ($cart->coupon_code) {
+                $this->clearCoupon($cart);
+                return;
+            }
+
             throw new \ApplicationException('Please fill the code');
         }
 
-        $cart = Cart::get();
 
         // Built-in options
         $options = [
@@ -52,6 +59,7 @@ class CouponValidator extends ComponentBase
         $target = post('target');
 
         $target['subtotal'] = $cart->total_price;
+
         // Get count
         // $count = post('count') ?: 1;
         $count = 1; // Jika minta lebih, dikasih stock nya aja berapa
@@ -60,17 +68,12 @@ class CouponValidator extends ComponentBase
         if($validator->validate($code, $options, $target, $count)) {
 
             $cart->discount = isset($validator->output['target']['subtotal']) ? $validator->output['target']['subtotal'] : 0;
-
-            $this->page['cart'] = $cart;
-
-            // $this->page['discount'] = isset($validator->output['target']['subtotal']) ? $validator->output['target']['subtotal'] : 0;
-
-            // $this->page['discount'] = 20000;
+            $cart->coupon_code = $validator->output['coupon_code'];
 
             // return success message
             Flash::success($validator->output['message']);
         } else {
-            $cart->discount = 0;
+            $this->clearCoupon($cart);
             // return error message
             Flash::error($validator->error_message);
             // \Flash::error($validator->error_message);
@@ -78,8 +81,23 @@ class CouponValidator extends ComponentBase
         }
 
         $cart->save();
-
-        $this->page['cart'] = $cart;
     }
 
+    public function onClear()
+    {
+        $this->page['cart'] = $cart = Cart::get();
+
+        $this->clearCoupon($cart);
+
+        $cart->save();
+
+        return $cart;
+    }
+
+    protected function clearCoupon($cart)
+    {
+        $cart->discount = 0;
+        $cart->coupon_code = null;
+        Flash::info('Coupon cleared');
+    }
 }
