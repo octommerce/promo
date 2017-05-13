@@ -46,7 +46,7 @@ class Coupon extends Model
         try {
             Db::beginTransaction();
 
-            if($this->stock < $amount) {
+            if($this->stock && $this->stock < $amount) {
                 return false;
             }
 

@@ -7,3 +7,6 @@
 1.0.2:
     - Add coupon fields on orders table
     - add_coupon_fields_on_orders_table.php
+1.0.3:
+    - Add coupon fields on carts table
+    - add_coupon_fields_on_carts_table.php

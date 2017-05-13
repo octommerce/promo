@@ -1,9 +1,9 @@
-<div class="form-group">
-	<input type="text" name="code" placeholder="Kode promo" class="form-control" data-request="{{ __SELF__ ~ '::onCheck' }}" data-track-input data-request-flash data-request-update="'checkout::summary': '.checkout-summary'">
+<div class="form-group promo-coupon-validator">
+	<label for="">Have a coupon code?</label>
     <div class="input-group">
-        <!-- <input type="text" name="code" placeholder="Kode promo" class="form-control" data-request="{{ __SELF__ ~ '::onCheck' }}"> -->
-        <!-- <span class="input-group-btn">
-            <button class="btn btn-default" type="submit">Check</button>
-        </span> -->
+        <input type="text" name="code" placeholder="Input coupon code" class="form-control">
+        <span class="input-group-btn">
+            <button class="btn btn-default" data-request="{{ __SELF__ ~ '::onCheck' }}" data-request-flash data-request-update="'checkout::summary': '.checkout-summary'">Apply</button>
+        </span>
     </div>
 </div>
